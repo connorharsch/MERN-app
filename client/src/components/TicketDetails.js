@@ -40,14 +40,15 @@ const TicketDetails = ({ticket}) => {
 
     var since = now.getTime() - date.getTime();
 
-    var daysSince = since / (1000 * 3600 * 24);
-    daysSince = "d: " + daysSince.toFixed(0);
-
+    var minutesSince = since / (1000 * 60);
+    minutesSince = "m: " + minutesSince.toFixed(0);
+    
     var hoursSince = since / (1000 * 3600);
     hoursSince = "h: " + hoursSince.toFixed(0);
 
-    var minutesSince = since / (1000 * 60);
-    minutesSince = "m: " + minutesSince.toFixed(0);
+    var daysSince = since / (1000 * 3600 * 24);
+    daysSince = "d: " + daysSince.toFixed(0);
+
 
     var mm = date.getMonth()+1;
     var dd = date.getDate();
