@@ -6,7 +6,7 @@ const Navbar = () => {
         <header>
             <div className="container">
                 <Link to="/">
-                    <h1>My Tickets</h1>
+                    <h2>My Tickets</h2>
                 </Link>
                 <Link to="http://www.metrombs.com">
                     <img src={logo}/>

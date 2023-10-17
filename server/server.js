@@ -19,7 +19,9 @@ app.use((req, res, next) => {
 app.use("/api/tickets", ticketRoutes)
 
 // Connect To DB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI,{
+    dbName: 'clients'
+})
     .then(() => {
         // Listen for requests
         app.listen(process.env.PORT, () => {

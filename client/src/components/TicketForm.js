@@ -56,19 +56,46 @@ const TicketForm = () => {
                 value={summary}
                 className={emptyFields.includes("summary") ? "error" : ""}
             />
-            <div className="slide-group">
-                <input 
-                    type="range"
-                    max={2}
-                    onChange={(e) => setUrgency(e.target.value)}
-                    value={urgency}
-                />
-                <input 
-                    type="range"
-                    max={3}
-                    onChange={(e) => setImpacted(e.target.value)}
-                    value={impacted}
-                />
+
+            <div className="sliders">
+                <div className="halve">
+                    <div className="slide-container">
+                        <div className="label-container">
+                            How urgent is this issue?
+                        </div>
+                        <input 
+                            type="range"
+                            max={2}
+                            onChange={(e) => setUrgency(e.target.value)}
+                            value={urgency}
+                        />
+                        <ul>
+                            <li>Not Urgent</li>
+                            <li>Normal</li>
+                            <li>Urgent</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="halve">
+                    <div className="slide-container">
+                        <div className="label-container">
+                            Who is impacted by this issue?
+                        </div>
+                        <input 
+                            type="range"
+                            max={3}
+                            onChange={(e) => setImpacted(e.target.value)}
+                            value={impacted}
+                        />
+                        <ul>
+                            <li>Only Me</li>
+                            <li>Don't Know</li>
+                            <li>Others</li>
+                            <li>Company</li>
+                        </ul>
+                            
+                    </div>
+                </div>
             </div>
             <label>Your name <b><span>*</span></b></label>
             <input 

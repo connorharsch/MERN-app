@@ -20,7 +20,7 @@ const getTicket = async (req, res) => {
     const ticket = await Ticket.findById(id);
 
     if(!ticket) {
-        return res.status(404).json({error: "No Ticket Found!"});
+        return res.status(400).json({error: "No Ticket Found!"});
     }
 
     res.status(200).json(ticket);

@@ -14,10 +14,15 @@ body {
 header {
   background: #fff;
 }
+
+img {
+  width: 200px;
+}
+
 header .container {
-  max-width: 1400px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,16 +32,12 @@ header a {
   text-decoration: none;
 }
 .pages{
-  max-width: 1400px;
+  max-width: 800px;
   padding: 20px;
   margin: 0 auto;
 }
 
-/* homepage */
-img {
-  width: 200px;
-}
-
+/* Home */
 .home {
   display: grid;
   gap: 100px;
@@ -59,7 +60,6 @@ img {
   font-size: 0.9em;
   color: #555;
 }
-
 .ticket-details span {
   position: absolute;
   top: 20px;
@@ -71,8 +71,7 @@ img {
   color: #333;
 }
 
-/* new ticket form */
-
+/* Ticket Form */
 label, input, textarea {
   display: block;
 }
@@ -101,14 +100,6 @@ form button {
   cursor: pointer;
 }
 
-.slide-group{
-  display: flex;
-  justify-content: space-around;
-}
-.slide-group input{
-  width: 30vw;
-}
-
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -124,4 +115,43 @@ input.error, textarea.error {
 
 label span{
   color: var(--error);
+}
+
+/* Slider CSS */
+
+
+.sliders{
+  display: flex;
+}
+
+.halve{
+  width: 100%;
+}
+
+.label-container{
+  text-align: center;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+li{
+  width: 100px;
+  text-align: center;
+  padding-bottom: 2%;
+}
+
+.slide-container{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.slide-container input{
+  margin: 0 auto;
+  width: 87%;
 }

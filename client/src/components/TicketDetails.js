@@ -16,7 +16,7 @@ const TicketDetails = ({ticket}) => {
             urgency = "Urgent"
             break;
         default:
-            return
+            return -1
     }
     switch(impacted){
         case 0:
@@ -32,8 +32,33 @@ const TicketDetails = ({ticket}) => {
             impacted = "Company"
             break;
         default:
-            return
+            return -1
     }
+    
+    var now = new Date();
+    var date = new Date(ticket.createdAt);
+
+    var since = now.getTime() - date.getTime();
+
+    var daysSince = since / (1000 * 3600 * 24);
+    daysSince = "d: " + daysSince.toFixed(0);
+
+    var hoursSince = since / (1000 * 3600);
+    hoursSince = "h: " + hoursSince.toFixed(0);
+
+    var minutesSince = since / (1000 * 60);
+    minutesSince = "m: " + minutesSince.toFixed(0);
+
+    var mm = date.getMonth()+1;
+    var dd = date.getDate();
+
+    if(mm < 10){
+        mm = 0 + "" + mm;
+    }
+    if(dd < 10){
+        dd = 0 + "" + dd;
+    }
+    var ticketID = "T" + date.getFullYear() + "-" + mm + "-" + dd;
 
     const handleClick = async () => {
         const response = await fetch("/api/tickets/" + ticket._id, {
@@ -48,14 +73,15 @@ const TicketDetails = ({ticket}) => {
 
     return(
         <div className="TicketDetails">
-            <h4>{ticket.title}</h4>
-            <p><strong>Summary: </strong>{ticket.summary}</p>
-            <p><strong>Urgency: </strong>{urgency}</p>
-            <p><strong>Impacted: </strong>{impacted}</p>
-            <p><strong>Name: </strong>{ticket.name}</p>
-            <p><strong>E-mail: </strong>{ticket.email}</p>
-            <p><strong>Phone: </strong>{ticket.phone}</p>
-            <p>{ticket.createdAt}</p>
+            <h4><strong>{ticketID}</strong> "{ticket.title}"</h4>
+            <p><strong>Summary:</strong> <p>{ticket.summary}</p></p>
+            <p><strong>Urgency:</strong> <p>{urgency}</p></p>
+            <p><strong>Impacted:</strong> <p>{impacted}</p></p>
+            <p><strong>Name:</strong> <p>{ticket.name}</p></p>
+            <p><strong>E-mail:</strong> <p>{ticket.email}</p></p>
+            <p><strong>Phone:</strong> <p>{ticket.phone}</p></p>
+            <br/>
+            <p>{daysSince + ": " + hoursSince + ": " + minutesSince + " || " + date}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div>
     );
