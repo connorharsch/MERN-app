@@ -4,7 +4,7 @@ import logo from './mbs-logo.png';
 const Navbar = () => {
     return(
         <header>
-            <div className="container">
+            <div className="header">
                 <Link to="/">
                     <h2>My Tickets</h2>
                 </Link>

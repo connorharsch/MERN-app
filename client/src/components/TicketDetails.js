@@ -1,3 +1,4 @@
+import { min } from "moment-timezone";
 import { useTicketsContext } from "../hooks/useTicketsContext";
 
 const TicketDetails = ({ticket}) => {
@@ -34,21 +35,9 @@ const TicketDetails = ({ticket}) => {
         default:
             return -1
     }
-    
-    var now = new Date();
+
+    // get ticketID header EX.) "#TYYYYMMDD"
     var date = new Date(ticket.createdAt);
-
-    var since = now.getTime() - date.getTime();
-
-    var minutesSince = since / (1000 * 60);
-    minutesSince = "m: " + minutesSince.toFixed(0);
-    
-    var hoursSince = since / (1000 * 3600);
-    hoursSince = "h: " + hoursSince.toFixed(0);
-
-    var daysSince = since / (1000 * 3600 * 24);
-    daysSince = "d: " + daysSince.toFixed(0);
-
 
     var mm = date.getMonth()+1;
     var dd = date.getDate();
@@ -59,7 +48,29 @@ const TicketDetails = ({ticket}) => {
     if(dd < 10){
         dd = 0 + "" + dd;
     }
+
     var ticketID = "T" + date.getFullYear() + "-" + mm + "-" + dd;
+    
+    //get time since created
+    var now = new Date();
+    var since = now.getTime() - date.getTime();
+
+    var minutesSince = since / (1000 * 60);
+    minutesSince = minutesSince.toFixed(1);
+    
+    var hoursSince = since / (1000 * 3600);
+    hoursSince = hoursSince.toFixed(1);
+
+    var daysSince = since / (1000 * 3600 * 24);
+    daysSince = daysSince.toFixed(1);
+
+    if(daysSince > 0){
+        date = "d: " + daysSince + " days ago";
+    }else if(hoursSince > 0){
+        date = "h: " + hoursSince + " hours ago";
+    }else if(minutesSince > 0){
+        date = "m: " + minutesSince + " minutes ago";
+    }
 
     const handleClick = async () => {
         const response = await fetch("/api/tickets/" + ticket._id, {
@@ -74,16 +85,16 @@ const TicketDetails = ({ticket}) => {
 
     return(
         <div className="TicketDetails">
-            <h4><strong>{ticketID}</strong> "{ticket.title}"</h4>
+            <h4>Ticket #: <strong>{ticketID}</strong></h4>
+            <h4>{ticket.title}</h4>
             <p><strong>Summary:</strong> <p>{ticket.summary}</p></p>
-            <p><strong>Urgency:</strong> <p>{urgency}</p></p>
-            <p><strong>Impacted:</strong> <p>{impacted}</p></p>
             <p><strong>Name:</strong> <p>{ticket.name}</p></p>
             <p><strong>E-mail:</strong> <p>{ticket.email}</p></p>
             <p><strong>Phone:</strong> <p>{ticket.phone}</p></p>
-            <br/>
-            <p>{daysSince + ": " + hoursSince + ": " + minutesSince + " || " + date}</p>
-            <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+            <p>{""+date}</p>
+            <div className="trash-can">
+                <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+            </div>
         </div>
     );
 };

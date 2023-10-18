@@ -3,7 +3,7 @@ import TicketForm from "../components/TicketForm";
 
 const Submit = () => {
     return(
-        <div className='container'>
+        <div className='page'>
             <TicketForm></TicketForm>
         </div>
     );

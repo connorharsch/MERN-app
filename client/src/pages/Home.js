@@ -21,7 +21,7 @@ const Home = () => {
     }, [])
 
     return(
-    <div className="home">
+    <div className="page">
         <div className="tickets">
             {tickets && tickets.map((ticket) => (
                 <div className="ticket-details">                

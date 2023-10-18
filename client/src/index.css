@@ -1,77 +1,103 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
+
+
 /* layout */
 :root {
   --primary: #1aac83;
   --error: #e7195a;
 }
-body {
+body, .pages{
   background: #f1f1f1;
-  margin: 0;
+  margin: auto;
+
   font-family: "Poppins";
 }
 header {
   background: #fff;
 }
 
-img {
-  width: 200px;
+h2 {
+  font-size: 1.4em;
 }
 
-header .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
+img {
+  margin: 10px;
+  display: block;
+  width: 225px;
+}
+
+header .header {
+  max-width: 780px;
+  margin: auto;
+  padding: 0px 30px;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
 }
-header a {
-  color: #333;
-  text-decoration: none;
-}
-.pages{
-  max-width: 800px;
-  padding: 20px;
-  margin: 0 auto;
+
+p{
+  font-size: 1em;
 }
 
-/* Home */
+header a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: #333;
+}
+
+header a h2{
+  margin: auto;
+}
+
+.pages{
+  max-width: 800px;
+  padding: 0px 20px;
+}
+
+/* Home "My Tickets" */
 .home {
   display: grid;
   gap: 100px;
 }
+
+/* Ticket Details */
 .ticket-details {
   background: #fff;
   border-radius: 4px;
-  margin-top: 20px;
-  padding: 20px;
+  margin: 15px 0;
+  padding: 10px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
+
 .ticket-details h4 {
-  margin: 0 0 10px 0;
+  margin: auto;
   font-size: 1.2em;
   color: var(--primary);
 }
 .ticket-details p {
-  margin: 0;
-  font-size: 0.9em;
+  margin: auto;
   color: #555;
 }
-.ticket-details span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+
+.ticket-details span { /*DELETE BUTTON*/
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
   border-radius: 50%;
   color: #333;
+  font-size: 2em;
 }
 
-/* Ticket Form */
+.trash-can {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Ticket Form "Create Ticket"*/
 label, input, textarea {
   display: block;
 }
@@ -82,19 +108,19 @@ textarea {
 
 input, textarea {
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
   resize: vertical
 }
+
 form button {
   background: var(--primary);
   border: 0;
   color: #fff;
   padding: 10px;
+  margin: 10px 0 10px;
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
@@ -113,19 +139,26 @@ input.error, textarea.error {
   border: 1px solid var(--error);
 }
 
+label{
+  margin-top: 10px;
+}
 label span{
   color: var(--error);
 }
 
 /* Slider CSS */
-
-
 .sliders{
+  margin-top: 10px;
   display: flex;
 }
 
 .halve{
+  margin: 10px 0 10px;
   width: 100%;
+}
+
+.slide-container input, ul{
+  padding: 0;
 }
 
 .label-container{
@@ -134,8 +167,7 @@ label span{
 
 ul{
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: auto;
   display: flex;
   justify-content: space-between;
 }
@@ -143,15 +175,53 @@ ul{
 li{
   width: 100px;
   text-align: center;
-  padding-bottom: 2%;
-}
-
-.slide-container{
-  width: 90%;
-  margin: 0 auto;
 }
 
 .slide-container input{
-  margin: 0 auto;
-  width: 87%;
+  margin: auto;
+  width: 85%;
+}
+
+/* Mobile/Small CSS */
+@media only screen and (max-width: 750px) {
+  img{
+    width: 30vw;
+  }
+
+  .sliders{
+    flex-direction: column;
+  }
+
+  .ticket-details{
+    margin-top: 2vw;
+  }
+
+  .ticket-details h4, li{
+    font-size: 2.5vw;
+  }
+
+  p{
+    font-size: 2vw;
+  }
+  
+
+  .ticket-details span { /*DELETE BUTTON*/
+    position: initial;
+    cursor: pointer;
+    background: #f1f1f1;
+    padding: 6px;
+    width: auto;
+    text-align: center;
+    color: #333;
+    font-size: 4vw;
+  }
+
+  textarea, input, label, h2, .label-container{
+    font-size: 3vw;
+  }
+
+  form button {
+    width: 100%;
+    font-size: 3vw;
+  }
 }
