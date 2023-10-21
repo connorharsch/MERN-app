@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const ticketRoutes = require("./routes/tickets");
+const ticketModel = require("./models/ticketModel");
 
 // Express App
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 // Middleware
 app.use(express.json())
 
+// Server Console
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()

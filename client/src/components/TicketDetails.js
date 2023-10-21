@@ -1,4 +1,3 @@
-import { min } from "moment-timezone";
 import { useTicketsContext } from "../hooks/useTicketsContext";
 
 const TicketDetails = ({ticket}) => {
@@ -38,7 +37,6 @@ const TicketDetails = ({ticket}) => {
 
     // get ticketID header EX.) "#TYYYYMMDD"
     var date = new Date(ticket.createdAt);
-
     var mm = date.getMonth()+1;
     var dd = date.getDate();
 
@@ -56,20 +54,28 @@ const TicketDetails = ({ticket}) => {
     var since = now.getTime() - date.getTime();
 
     var minutesSince = since / (1000 * 60);
-    minutesSince = minutesSince.toFixed(1);
+    minutesSince = minutesSince.toFixed(0);
     
     var hoursSince = since / (1000 * 3600);
-    hoursSince = hoursSince.toFixed(1);
+    hoursSince = hoursSince.toFixed(0);
 
     var daysSince = since / (1000 * 3600 * 24);
-    daysSince = daysSince.toFixed(1);
+    daysSince = daysSince.toFixed(0);
 
-    if(daysSince > 0){
-        date = "d: " + daysSince + " days ago";
-    }else if(hoursSince > 0){
-        date = "h: " + hoursSince + " hours ago";
-    }else if(minutesSince > 0){
-        date = "m: " + minutesSince + " minutes ago";
+    if(daysSince > 1){
+        date = daysSince + " days ago";
+    }else if (daysSince == 1){
+        date = daysSince + " day ago";
+    }else if(hoursSince > 1){
+        date = hoursSince + " hours ago";
+    }else if(hoursSince == 1){
+        date = hoursSince + " hour ago";
+    }else if(minutesSince > 1){
+        date = minutesSince + " minutes ago";
+    }else if(minutesSince == 1){
+        date = minutesSince + " minute ago";
+    }else{
+        date = "just now!"
     }
 
     const handleClick = async () => {
@@ -88,10 +94,12 @@ const TicketDetails = ({ticket}) => {
             <h4>Ticket #: <strong>{ticketID}</strong></h4>
             <h4>{ticket.title}</h4>
             <p><strong>Summary:</strong> <p>{ticket.summary}</p></p>
+            <p><strong>Urgency:</strong> <p>{urgency}</p></p>
+            <p><strong>Impacted:</strong> <p>{impacted}</p></p>
             <p><strong>Name:</strong> <p>{ticket.name}</p></p>
             <p><strong>E-mail:</strong> <p>{ticket.email}</p></p>
             <p><strong>Phone:</strong> <p>{ticket.phone}</p></p>
-            <p>{""+date}</p>
+            <p><strong>Created:</strong> <p>{date}</p></p>
             <div className="trash-can">
                 <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
             </div>

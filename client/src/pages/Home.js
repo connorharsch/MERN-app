@@ -6,7 +6,7 @@ import TicketDetails from "../components/TicketDetails"
 
 const Home = () => {
     const {tickets, dispatch} = useTicketsContext();
-
+    
     useEffect(() => {
         const fetchTickets = async() => {
             const response = await fetch("/api/tickets")

@@ -8,18 +8,25 @@
   --primary: #1aac83;
   --error: #e7195a;
 }
+
+html{
+  height: 100vh;
+}
+
 body, .pages{
   background: #f1f1f1;
   margin: auto;
 
   font-family: "Poppins";
 }
+
 header {
   background: #fff;
 }
 
 h2 {
   font-size: 1.4em;
+  margin: auto;
 }
 
 img {
@@ -41,14 +48,10 @@ p{
   font-size: 1em;
 }
 
-header a {
+a {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   color: #333;
-}
-
-header a h2{
-  margin: auto;
 }
 
 .pages{
@@ -77,6 +80,7 @@ header a h2{
   font-size: 1.2em;
   color: var(--primary);
 }
+
 .ticket-details p {
   margin: auto;
   color: #555;
@@ -84,10 +88,10 @@ header a h2{
 
 .ticket-details span { /*DELETE BUTTON*/
   cursor: pointer;
-  background: #f1f1f1;
+  background: var(--error);
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: #fff;
   font-size: 2em;
 }
 
@@ -107,6 +111,7 @@ textarea {
 }
 
 input, textarea {
+  -webkit-appearance: none;
   padding: 10px;
   width: 100%;
   border: 1px solid #ddd;
@@ -196,27 +201,7 @@ li{
     margin-top: 2vw;
   }
 
-  .ticket-details h4, li{
-    font-size: 2.5vw;
-  }
-
-  p{
-    font-size: 2vw;
-  }
-  
-
-  .ticket-details span { /*DELETE BUTTON*/
-    position: initial;
-    cursor: pointer;
-    background: #f1f1f1;
-    padding: 6px;
-    width: auto;
-    text-align: center;
-    color: #333;
-    font-size: 4vw;
-  }
-
-  textarea, input, label, h2, .label-container{
+  h2{
     font-size: 3vw;
   }
 
