@@ -29,7 +29,11 @@ const ticketSchema = new Schema({
     phone: {
         type: String,
         required: true
+    },
+    user_id: {
+        type: String,
+        required: true
     }
-}, {collection: "mbs", timestamps: true});
+}, {collection: "tickets", timestamps: true});
 
 module.exports = mongoose.model('Ticket', ticketSchema);

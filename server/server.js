@@ -3,7 +3,7 @@ require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const ticketRoutes = require("./routes/tickets");
-const ticketModel = require("./models/ticketModel");
+const userRoutes = require("./routes/user");
 
 // Express App
 const app = express();
@@ -19,10 +19,11 @@ app.use((req, res, next) => {
 
 // Routing
 app.use("/api/tickets", ticketRoutes)
+app.use("/api/user", userRoutes)
 
 // Connect To DB
 mongoose.connect(process.env.MONGO_URI,{
-    dbName: 'clients'
+    dbName: 'ticketing-system'
 })
     .then(() => {
         // Listen for requests

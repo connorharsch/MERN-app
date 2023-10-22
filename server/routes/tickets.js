@@ -6,8 +6,12 @@ const {
     deleteTicket,
     updateTicket
 } = require("../controllers/ticketController");
+const requireAuth = require("../middleware/requireAuth")
 
 const router = express.Router();
+
+//require webtoken for all routes
+router.use(requireAuth)
 
 // Routes
 //Get All Tickets

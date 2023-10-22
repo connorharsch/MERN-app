@@ -1,10 +1,11 @@
 import { useTicketsContext } from "../hooks/useTicketsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const TicketDetails = ({ticket}) => {
     const { dispatch } = useTicketsContext();
+    const { user } = useAuthContext()
 
     var urgency = ticket.urgency;
-    var impacted = ticket.impacted;
     switch(urgency){
         case 0:
             urgency = "Not Urgent"
@@ -18,6 +19,8 @@ const TicketDetails = ({ticket}) => {
         default:
             return -1
     }
+    
+    var impacted = ticket.impacted;
     switch(impacted){
         case 0:
             impacted = "Only Me"
@@ -79,8 +82,14 @@ const TicketDetails = ({ticket}) => {
     }
 
     const handleClick = async () => {
+        if(!user){
+            return
+        }
         const response = await fetch("/api/tickets/" + ticket._id, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         });
         const json = await response.json();
 
@@ -93,20 +102,24 @@ const TicketDetails = ({ticket}) => {
         <div className="TicketDetails">
             <h4>Ticket #: <strong>{ticketID}</strong></h4>
             <h4>{ticket.title}</h4>
-            <p><strong>Summary:</strong> <p>{ticket.summary}</p></p>
-            <p><strong>Urgency:</strong> <p>{urgency}</p></p>
-            <p><strong>Impacted:</strong> <p>{impacted}</p></p>
-            <p><strong>Name:</strong> <p>{ticket.name}</p></p>
-            <p><strong>E-mail:</strong> <p>{ticket.email}</p></p>
-            <p><strong>Phone:</strong> <p>{ticket.phone}</p></p>
-            <p><strong>Created:</strong> <p>{date}</p></p>
+            <strong>Summary:</strong> 
+            <p>{ticket.summary}</p>
+            <strong>Urgency:</strong> 
+            <p>{urgency}</p>
+            <strong>Impacted:</strong> 
+            <p>{impacted}</p>
+            <strong>Name:</strong> 
+            <p>{ticket.name}</p>
+            <strong>E-mail:</strong> 
+            <p>{ticket.email}</p>
+            <strong>Phone:</strong> 
+            <p>{ticket.phone}</p>
+            <strong>Created:</strong>
+            <p>{date}</p>
             <div className="trash-can">
                 <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
             </div>
         </div>
     );
 };
-
-
-
 export default TicketDetails;

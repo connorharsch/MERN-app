@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useTicketsContext } from "../hooks/useTicketsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const TicketForm = () => {
     //State Instantiation
     const {dispatch} = useTicketsContext()
+    const {user} = useAuthContext()
+
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
     const [urgency, setUrgency] = useState(1)
@@ -17,13 +20,19 @@ const TicketForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if(!user){
+            setError("You must be logged in!")
+            return
+        }
+
         const ticket = {title, summary, urgency, impacted, name, email, phone}
 
         const response = await fetch("/api/tickets", {
             method: 'POST',
             body: JSON.stringify(ticket),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             }
         })
         const json = await response.json()
@@ -35,9 +44,11 @@ const TicketForm = () => {
         if (response.ok) {
             //sends necessary json data to insert new document in db
             dispatch({type: "CREATE_TICKET", payload: json})
-            window.open("../","_self")
+            window.open("/", "_self")
         }
     }
+
+    
 
     return(
         <form className="create" onSubmit={handleSubmit}>
@@ -106,7 +117,7 @@ const TicketForm = () => {
             />
             <label>Your e-mail <b><span>*</span></b></label>
             <input 
-                type="text"
+                type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 className={emptyFields.includes("email") ? "error" : ""}

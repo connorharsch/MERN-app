@@ -1,8 +1,6 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
-
-
 /* layout */
 :root {
   --primary: #1aac83;
@@ -24,6 +22,11 @@ header {
   background: #fff;
 }
 
+.header-right h2{
+  text-align: right;
+  
+}
+
 h2 {
   font-size: 1.4em;
   margin: auto;
@@ -36,11 +39,11 @@ img {
 }
 
 header .header {
-  max-width: 780px;
+  max-width: 800px;
   margin: auto;
   padding: 0px 30px;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 }
 
@@ -185,6 +188,15 @@ li{
 .slide-container input{
   margin: auto;
   width: 85%;
+}
+
+form.signup, form.login{
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+
 }
 
 /* Mobile/Small CSS */

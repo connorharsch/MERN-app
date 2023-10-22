@@ -4,7 +4,17 @@ const mongoose = require("mongoose");
 
 // get all tickets
 const getTickets = async(req, res) => {
-    const tickets = await Ticket.find({}).sort({createdAt: -1});
+    const user_id = req.user._id
+    const admin_id = process.env.ADMIN_ID
+
+    var tickets;
+
+    if(user_id == admin_id){
+        tickets = await Ticket.find({}).sort({createdAt: -1});
+    }else{
+        tickets = await Ticket.find({ user_id }).sort({createdAt: -1});
+    }
+ 
 
     res.status(200).json(tickets);
 }
@@ -54,7 +64,8 @@ const createTicket = async(req, res) => {
     }
 
     try{
-        const ticket = await Ticket.create({title, summary, urgency, impacted, name, email, phone});
+        const user_id = req.user._id
+        const ticket = await Ticket.create({title, summary, urgency, impacted, name, email, phone, user_id});
         res.status(200).json(ticket);
     }catch(err){
         res.status(400).json({error: err.message});
