@@ -7,9 +7,8 @@ const createToken = (_id) => {
 
 // Log-in User
 const loginUser = async (req, res) => {
-    const {email, password} = req.body
-
     try {
+        const {email, password} = req.body
         const user = await User.login(email, password)
 
         //Create JWT WebToken
@@ -23,9 +22,8 @@ const loginUser = async (req, res) => {
 
 // Sign-up User
 const signupUser = async (req, res) => {
-    const {email, password} = req.body
-
     try {
+        const {email, password} = req.body
         const user = await User.signup(email, password)
 
         //Create JWT WebToken

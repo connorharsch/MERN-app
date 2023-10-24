@@ -15,11 +15,18 @@
     {
       "src": "faviconV2.png",
       "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "faviconV2.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
+  "prefer_related_applications": true,
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
